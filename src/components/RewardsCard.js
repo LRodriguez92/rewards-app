@@ -3,9 +3,9 @@ import {QRCodeSVG} from 'qrcode.react';
 let rewards = 8
 let stamps = []
 
+// adds stamp or blank circle to the rewards card depending on the reward amount
 for (let i = 1; i <= 10; i++) {
     if (i === 6) {
-        console.log("BREAK");
         stamps.push(<br/>)
     }
     if (i <= rewards) {
@@ -29,14 +29,15 @@ for (let i = 1; i <= 10; i++) {
 
 export default function RewardsCard() {
     return (
-        <div className="h-screen flex flex-col justify-center bg-gray-50">
-            <div className="max-w-7xl mx-auto h-3/5 lg:h-4/5 lg:w-3/5 lg:pb-8 flex flex-col justify-center bg-white overflow-hidden shadow rounded-lg" >
-                <div className="px-4 py-5 sm:p-6 m-auto text-center font-bold">
-                    <QRCodeSVG value="random value" size="250"/>
-                </div>
-                {/* <strong className="text-center">Scan QR Code to receive a stamp</strong> */}
-                <div className="rounded-lg mx-auto bg-gray-100 px-4 py-4 sm:px-6">
-                    {stamps}
+        <div className="h-screen flex flex-col justify-center bg-gray-50 pb-16">
+            <strong className="text-lg text-center">Scan QR Code to receive a stamp</strong>
+            <div className="max-w-7xl mx-auto h-3/5 lg:h-4/5 lg:w-3/5 lg:pb-8 flex flex-col justify-center overflow-hidden shadow rounded-lg bg-gray-100" >
+                <div className="rounded-lg mx-auto bg-gray-100 px-4 py-4 sm:px-6 flex flex-col items-center">
+                    <QRCodeSVG value="https://codedbyleo.com" size="250"/>
+                    {/* <strong>Scan QR Code to receive a stamp</strong> */}
+                    <div className="mt-4">
+                        {stamps}
+                    </div>
                 {/* Content goes here */}
                 {/* We use less vertical padding on card footers at all sizes than on headers or body sections */}
                 </div>

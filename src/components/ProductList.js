@@ -1,4 +1,4 @@
-/* This example requires Tailwind CSS v2.0+ */
+import { Link } from 'react-router-dom'
 const strains = [
     {
         name: 'Pineapple Express',
@@ -82,6 +82,7 @@ const strains = [
           'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
     },
   ]
+
   
   export default function ProductList() {
     return (
@@ -95,7 +96,9 @@ const strains = [
               type="button"
               className="mt-2 inline-flex items-center justify-center rounded-md border border-transparent bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto"
             >
-              Add strain
+              <Link to="/new/strain">
+                Add strain
+              </Link>
             </button>
           </div>
         </div>
@@ -124,8 +127,8 @@ const strains = [
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
-                    {strains.map((strain) => (
-                      <tr key={strain.subSpecies}>
+                    {strains.map((strain, index) => (
+                      <tr key={index}>
                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                           <div className="flex items-center">
                             <div className="h-10 w-10 flex-shrink-0">

@@ -3,6 +3,7 @@ import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon, MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { PlusSmIcon } from '@heroicons/react/solid'
+import { useState } from 'react'
 
 const user = {
   name: 'Tom Cook',
@@ -23,6 +24,12 @@ function classNames(...classes) {
 }
 
 export default function Main() {
+
+  // const [navigation, setNavigation] = useState([
+  //   { name: 'Strains', href: '/', current: true },
+  //   { name: 'Rewards Card', href: '/rewards', current: false },
+  // ])
+
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {({ open }) => (
@@ -67,30 +74,10 @@ export default function Main() {
                     >
                       {item.name}
                     </Link>
-                    // <a
-                    //   key={item.name}
-                    //   href={item.href}
-                    //   className={classNames(
-                    //     item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
-                    //     'px-3 py-2 rounded-md text-sm font-medium'
-                    //   )}
-                    //   aria-current={item.current ? 'page' : undefined}
-                    // >
-                    //   {item.name}
-                    // </a>
                   ))}
                 </div>
               </div>
               <div className="flex items-center">
-                {/* <div className="flex-shrink-0">
-                  <button
-                    type="button"
-                    className="relative inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-emerald-500 hover:bg-emerald-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-emerald-500"
-                  >
-                    <PlusSmIcon className="-ml-1 mr-2 h-5 w-5" aria-hidden="true" />
-                    <span>New Strain</span>
-                  </button>
-                </div> */}
                 <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
                   <button
                     type="button"
@@ -120,15 +107,17 @@ export default function Main() {
                         {userNavigation.map((item) => (
                           <Menu.Item key={item.name}>
                             {({ active }) => (
-                              <a
-                                href={item.href}
-                                className={classNames(
-                                  active ? 'bg-gray-100' : '',
-                                  'block px-4 py-2 text-sm text-gray-700'
-                                )}
-                              >
-                                {item.name}
-                              </a>
+                              <div>
+                                <Link
+                                  to={item.href}
+                                  className={classNames(
+                                    active ? 'bg-gray-100' : '',
+                                    'block px-4 py-2 text-sm text-gray-700'
+                                  )}
+                                >
+                                  {item.name}
+                                </Link>
+                              </div>
                             )}
                           </Menu.Item>
                         ))}
@@ -170,8 +159,6 @@ export default function Main() {
                   type="button"
                   className="ml-auto flex-shrink-0 bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                 >
-                  {/* <span className="sr-only">View notifications</span>
-                  <BellIcon className="h-6 w-6" aria-hidden="true" /> */}
                 </button>
               </div>
               <div className="mt-3 px-2 space-y-1 sm:px-3">
