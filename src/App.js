@@ -3,7 +3,7 @@ import Login from './components/Login'
 import Nav from './components/Nav'
 import ProductList from './components/ProductList';
 import RewardsCard from './components/RewardsCard';
-import NewStrainForm from './components/NewStrainForm';
+import StrainForm from './components/StrainForm';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Route path="/" element={<ProductList />} />
       <Route path="/login" element={<Login />} />
       <Route path="/rewards" element={<RewardsCard />} />
-      <Route path="/new/strain" element={<NewStrainForm />}/>
+      <Route path="/new/strain" element={<StrainForm />}/>
       {/* <Route path="/admin" element={<Login />} /> */}
     </Routes>
     </>
