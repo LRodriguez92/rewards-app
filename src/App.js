@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import Login from './components/Login'
+import UserForm from './components/UserForm'
 import Nav from './components/Nav'
 import ProductList from './components/ProductList';
 import RewardsCard from './components/RewardsCard';
@@ -12,7 +12,8 @@ function App() {
     <Nav />
     <Routes>
       <Route path="/" element={<ProductList />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<UserForm login={true}/>} />
+      <Route path="/signup" element={<UserForm login={false}/>} />
       <Route path="/rewards" element={<RewardsCard />} />
       <Route path="/new/strain" element={<StrainForm />}/>
       <Route exact path="/connect/:providerName/redirect" element={<LoginRedirect />} />
