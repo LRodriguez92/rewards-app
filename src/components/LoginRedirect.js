@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, useParams } from "react-router-dom";
+import axios from 'axios';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -12,14 +13,13 @@ const LoginRedirect = (props) => {
   useEffect(() => {
     // Successfully logged with the provider
     // Now logging with strapi by using the access_token (given by the provider) in props.location.search
-    fetch(`${backendUrl}/api/auth/${params.providerName}/callback${location.search}`)
+    axios(`${backendUrl}/api/auth/${params.providerName}/callback${location.search}`)
       .then(res => {
         if (res.status !== 200) {
           throw new Error(`Couldn't login to Strapi. Status: ${res.status}`);
         }
         return res;
       })
-      .then(res => res.json())
       .then(res => {
         // Successfully logged with Strapi
         // Now saving the jwt to use it for future authenticated requests to Strapi
