@@ -1,37 +1,38 @@
 import {QRCodeSVG} from 'qrcode.react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-let rewards = 8
 
-let stamps = []
-
-// adds stamp or blank circle to the rewards card depending on the reward amount
-for (let i = 1; i <= 10; i++) {
-    if (i === 6) {
-        stamps.push(<br/>)
-    }
-    if (i <= rewards) {
-        stamps.push(
-            <img
-                key={i}
-                className="inline-block m-2 h-10 w-10 rounded-full"
-                src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fdownload%2Fgreen%2Fcheck-mark-8-512.jpg&f=1&nofb=1"
-                alt=""
-            />
-        )
-    } else if (i > rewards) {
-        stamps.push(
-            <span key={i} className="inline-flex m-2 items-center justify-center h-10 w-10 rounded-full bg-gray-200">
-                <span className="text-xl font-medium leading-none text-white pb-2"></span>
-            </span>
-        )
-    }
-
-}
 
 export default function RewardsCard() {
+    
+    let rewards = 8
+    let stamps = []
+    
+    // adds stamp or blank circle to the rewards card depending on the reward amount
+    for (let i = 1; i <= 10; i++) {
+        if (i === 6) {
+            stamps.push(<br/>)
+        }
+        if (i <= rewards) {
+            stamps.push(
+                <img
+                    key={i}
+                    className="inline-block m-2 h-10 w-10 rounded-full"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fdownload%2Fgreen%2Fcheck-mark-8-512.jpg&f=1&nofb=1"
+                    alt=""
+                />
+            )
+        } else if (i > rewards) {
+            stamps.push(
+                <span key={i} className="inline-flex m-2 items-center justify-center h-10 w-10 rounded-full bg-gray-200">
+                    <span className="text-xl font-medium leading-none text-white pb-2"></span>
+                </span>
+            )
+        }
+    
+    }
 
     const loggedIn = useSelector(state => state.loggedIn)
     const navigate = useNavigate()
