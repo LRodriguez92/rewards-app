@@ -2,11 +2,18 @@ import { LockClosedIcon } from '@heroicons/react/solid'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { login, signup } from '../services/userServices'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logIn, logOut } from '../redux/reducers/loggedInSlice'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export default function UserForm({ loginForm }) {
+    const loggedIn = useSelector((state) => state.loggedIn.value)
+    const dispatch = useDispatch()
 
+    const navigate = useNavigate()
+    
     const [data, setData] = useState({
         email: '',
         password: ''
@@ -32,6 +39,8 @@ export default function UserForm({ loginForm }) {
                 email: '',
                 password: ''
             })
+            dispatch(logIn())
+            navigate('/')
         }
     }
 
@@ -46,8 +55,11 @@ export default function UserForm({ loginForm }) {
         finally {
             setData({
                 email: '',
-                password: ''
+                password: '',
+                username: ''
             })
+            dispatch(logIn())
+            navigate('/')
         }
     }
 
