@@ -1,18 +1,19 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { login, signup } from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch} from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { logIn } from '../redux/reducers/loggedInSlice'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export default function UserForm({ loginForm }) {
     const dispatch = useDispatch()
-
-    const navigate = useNavigate()
     
+    const navigate = useNavigate()
+
+
     const [data, setData] = useState({
         email: '',
         password: ''

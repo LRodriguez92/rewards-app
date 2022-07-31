@@ -1,6 +1,10 @@
 import {QRCodeSVG} from 'qrcode.react';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
 let rewards = 8
+
 let stamps = []
 
 // adds stamp or blank circle to the rewards card depending on the reward amount
@@ -28,6 +32,18 @@ for (let i = 1; i <= 10; i++) {
 }
 
 export default function RewardsCard() {
+
+    const loggedIn = useSelector(state => state.loggedIn)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        console.log({loggedIn});
+        if (!loggedIn.value) {
+            navigate('/login')
+        }
+    }, [navigate, loggedIn])
+
+
     return (
         <div className="h-screen flex flex-col justify-center bg-gray-50 pb-16">
             <strong className="text-lg text-center">Scan QR Code to receive a stamp</strong>
