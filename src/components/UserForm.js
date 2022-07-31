@@ -3,13 +3,12 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { login, signup } from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { logIn, logOut } from '../redux/reducers/loggedInSlice'
+import { useDispatch} from 'react-redux'
+import { logIn } from '../redux/reducers/loggedInSlice'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
 export default function UserForm({ loginForm }) {
-    const loggedIn = useSelector((state) => state.loggedIn.value)
     const dispatch = useDispatch()
 
     const navigate = useNavigate()

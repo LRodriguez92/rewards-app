@@ -4,6 +4,7 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logIn, logOut } from '../redux/reducers/loggedInSlice'
+import { useNavigate } from 'react-router-dom'
 
 const user = {
   name: localStorage.getItem('username'),
@@ -27,12 +28,14 @@ export default function Main() {
 
   const loggedIn = useSelector((state) => state.loggedIn.value)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const logOutUser = () => {
     localStorage.removeItem('jwt')
     localStorage.removeItem('username')
     localStorage.removeItem('email')
     dispatch(logOut())
+    navigate('/')
   }
 
   // useEffect(() => {

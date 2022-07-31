@@ -5,8 +5,23 @@ import ProductList from './components/ProductList';
 import RewardsCard from './components/RewardsCard';
 import StrainForm from './components/StrainForm';
 import LoginRedirect from './components/LoginRedirect';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux'
+import { logIn, logOut } from './redux/reducers/loggedInSlice'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (localStorage.getItem('jwt')) {
+      console.log('Logged in!');
+      dispatch(logIn())
+    } else {
+      console.log('Not logged in!');
+      dispatch(logOut())
+    }
+  }, [dispatch])
+
   return (
     <>
     <Nav />
