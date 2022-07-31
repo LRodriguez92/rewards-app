@@ -3,6 +3,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { login, signup } from '../services/userServices'
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 export default function UserForm({ loginForm }) {
 
     const [data, setData] = useState({
@@ -74,8 +76,8 @@ export default function UserForm({ loginForm }) {
 
                   <div className="mt-1 grid grid-cols-3 gap-3">
                   <div>
-                      <Link
-                        to="/connect/auth0/redirect"
+                      <a
+                        href={`${backendUrl}/api/connect/auth0`}
                         className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
                         <span className="sr-only">Sign in with Google</span>
@@ -86,11 +88,11 @@ export default function UserForm({ loginForm }) {
                             clipRule="evenodd"
                           />
                         </svg>
-                      </Link>
+                      </a>
                     </div>
                     <div>
                       <a
-                        href="#"
+                        href={`${backendUrl}/api/connect/facebook`}
                         className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
                         <span className="sr-only">Sign in with Facebook</span>
@@ -144,7 +146,6 @@ export default function UserForm({ loginForm }) {
                         required
                         className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm"
                         placeholder="Username"
-                        // value={data.username}
                         onChange={handleChange}
                         />
                     </div>
@@ -161,7 +162,7 @@ export default function UserForm({ loginForm }) {
                     type="email"
                     autoComplete="email"
                     required
-                    className={`appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 ${loginForm ? 'rounded-t-md' : ''} focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
+                    className={`${loginForm ? 'rounded-t-md' : ''} appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
                     placeholder="Email address"
                     value={data.email}
                     onChange={handleChange}
