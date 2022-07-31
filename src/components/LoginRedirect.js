@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux'
+import { logIn } from '../redux/reducers/loggedInSlice'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -9,6 +11,7 @@ const LoginRedirect = (props) => {
   const location = useLocation();
   const params = useParams();
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
   useEffect(() => {
     // Successfully logged with the provider
@@ -23,8 +26,11 @@ const LoginRedirect = (props) => {
       .then(res => {
         // Successfully logged with Strapi
         // Now saving the jwt to use it for future authenticated requests to Strapi
+        console.log(res);
         localStorage.setItem('jwt', res.data.jwt);
         localStorage.setItem('username', res.data.user.username);
+        localStorage.setItem('email', res.data.user.email);
+        dispatch(logIn())
         navigate('/')
         // setText('You have been successfully logged in. You will be redirected in a few seconds...');
         // setTimeout(() => navigate('/'), 3000); // Redirect to homepage after 3 sec
