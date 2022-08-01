@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const login = ({email, password}) => {
-    axios.post('http://localhost:1337/api/auth/local', {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/local`, {
     identifier: email,
     password: password,
   })
@@ -20,7 +20,7 @@ export const login = ({email, password}) => {
 }
 
 export const signup = ({email, password, username}) => {
-    axios.post('http://localhost:1337/api/auth/local/register', {
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth/local/register`, {
     username: username,
     email: email,
     password: password,

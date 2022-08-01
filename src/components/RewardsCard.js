@@ -2,15 +2,39 @@ import {QRCodeSVG} from 'qrcode.react';
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios';
 
 
 
 export default function RewardsCard() {
+
     
-    let rewards = 8
+    const loggedIn = useSelector(state => state.loggedIn)
+    const navigate = useNavigate()
+
+    const [rewards, setRewards] = useState();
+    const [id, setId] = useState();
+
     let stamps = []
+
+    useEffect(() => {
+        console.log({loggedIn});
+        if (!loggedIn.value) {
+            navigate('/login')
+        } else {
+            navigate('/rewards')
+        }
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/me`, { headers: { Authorization: `Bearer ${localStorage.getItem('jwt')}` } })
+        .then((response) => {
+            setRewards(response.data.rewards)
+            setId(response.data.id)
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error);
+        })
+ 
+    }, [navigate, loggedIn])
     
-    // adds stamp or blank circle to the rewards card depending on the reward amount
     for (let i = 1; i <= 10; i++) {
         if (i === 6) {
             stamps.push(<br/>)
@@ -33,24 +57,19 @@ export default function RewardsCard() {
         }
     
     }
+    
+    // let rewards = 8
+    
+    // adds stamp or blank circle to the rewards card depending on the reward amount
 
-    const loggedIn = useSelector(state => state.loggedIn)
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        console.log({loggedIn});
-        if (!loggedIn.value) {
-            navigate('/login')
-        }
-    }, [navigate, loggedIn])
 
 
     return (
         <div className="h-screen flex flex-col justify-center bg-gray-50 pb-16">
-            <strong className="text-lg text-center">Scan QR Code to receive a stamp</strong>
+            <strong className="text-lg text-center">Scan QR Code to receive a stamp or redeem your reward</strong>
             <div className="max-w-7xl mx-auto h-3/5 lg:h-4/5 lg:w-3/5 lg:pb-8 flex flex-col justify-center overflow-hidden shadow rounded-lg bg-gray-100" >
                 <div className="rounded-lg mx-auto bg-gray-100 px-4 py-4 sm:px-6 flex flex-col items-center">
-                    <QRCodeSVG value="https://codedbyleo.com" size="250"/>
+                    <QRCodeSVG value={`http://192.168.1.11:3000/users/${id}/stamp`} size="250"/>
                     {/* <strong>Scan QR Code to receive a stamp</strong> */}
                     <div className="mt-4">
                         {stamps}

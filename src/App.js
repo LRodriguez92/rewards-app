@@ -8,6 +8,7 @@ import LoginRedirect from './components/LoginRedirect';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux'
 import { logIn, logOut } from './redux/reducers/loggedInSlice'
+import StampCard from './components/StampCard';
 
 function App() {
   const dispatch = useDispatch()
@@ -31,7 +32,8 @@ function App() {
       <Route path="/signup" element={<UserForm loginForm={false}/>} />
       <Route path="/rewards" element={<RewardsCard />} />
       <Route path="/new/strain" element={<StrainForm />}/>
-      <Route exact path="/connect/:providerName/redirect" element={<LoginRedirect />} />
+      <Route path="/connect/:providerName/redirect" element={<LoginRedirect />} />
+      <Route path="/users/:id/stamp/" element={<StampCard />}/>
       {/* <Route path="/admin" element={<Login />} /> */}
     </Routes>
     </>
