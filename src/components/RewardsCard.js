@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 export default function RewardsCard() {
-
+    // console.log(window.location.origin);
     
     const loggedIn = useSelector(state => state.loggedIn)
     const navigate = useNavigate()
@@ -69,7 +69,7 @@ export default function RewardsCard() {
             <strong className="text-lg text-center">Scan QR Code to receive a stamp or redeem your reward</strong>
             <div className="max-w-7xl mx-auto h-3/5 lg:h-4/5 lg:w-3/5 lg:pb-8 flex flex-col justify-center overflow-hidden shadow rounded-lg bg-gray-100" >
                 <div className="rounded-lg mx-auto bg-gray-100 px-4 py-4 sm:px-6 flex flex-col items-center">
-                    <QRCodeSVG value={`http://192.168.1.11:3000/users/${id}/stamp`} size="250"/>
+                    <QRCodeSVG value={`${window.location.origin}/users/${id}/stamp`} size="250"/>
                     {/* <strong>Scan QR Code to receive a stamp</strong> */}
                     <div className="mt-4">
                         {stamps}
