@@ -1,9 +1,9 @@
-import { Fragment, useEffect } from 'react'
+import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { logIn, logOut } from '../redux/reducers/loggedInSlice'
+import { logOut } from '../redux/reducers/loggedInSlice'
 import { useNavigate } from 'react-router-dom'
 
 const user = {

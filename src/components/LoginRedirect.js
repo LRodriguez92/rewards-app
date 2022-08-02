@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from 'axios';
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { logIn } from '../redux/reducers/loggedInSlice'
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
@@ -39,7 +39,7 @@ const LoginRedirect = (props) => {
         console.log(err);
         setText('An error occurred, please see the developer console.')
       });
-  }, [navigate, location.search, params.providerName]);
+  }, [navigate, location.search, params.providerName, dispatch]);
 
   return <p>{text}</p>
 };

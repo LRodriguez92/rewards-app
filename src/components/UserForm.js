@@ -1,5 +1,5 @@
 import { LockClosedIcon } from '@heroicons/react/solid'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { login, signup } from '../services/userServices'
 import { useNavigate } from 'react-router-dom'
@@ -120,7 +120,7 @@ export default function UserForm({ loginForm }) {
 
                     <div>
                       <a
-                        href="#"
+                        href="/"
                         className="w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
                       >
                         <span className="sr-only">Sign in with Twitter</span>
@@ -212,7 +212,7 @@ export default function UserForm({ loginForm }) {
                 </div>
                 {loginForm ? 
                     <div className="text-sm">
-                        <a href="#" className="font-medium text-emerald-600 hover:text-emerald-500">
+                        <a href="/" className="font-medium text-emerald-600 hover:text-emerald-500">
                         Forgot your password?
                         </a>
                     </div>

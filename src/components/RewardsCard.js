@@ -7,7 +7,6 @@ import axios from 'axios';
 
 
 export default function RewardsCard() {
-    // console.log(window.location.origin);
     
     const loggedIn = useSelector(state => state.loggedIn)
     const navigate = useNavigate()
@@ -37,12 +36,12 @@ export default function RewardsCard() {
     
     for (let i = 1; i <= 10; i++) {
         if (i === 6) {
-            stamps.push(<br/>)
+            stamps.push(<br key={i}/>)
         }
         if (i <= rewards) {
             stamps.push(
                 <img
-                    key={i}
+                    key={i+10}
                     className="inline-block m-2 h-10 w-10 rounded-full"
                     src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.iconsdb.com%2Ficons%2Fdownload%2Fgreen%2Fcheck-mark-8-512.jpg&f=1&nofb=1"
                     alt=""
@@ -50,7 +49,7 @@ export default function RewardsCard() {
             )
         } else if (i > rewards) {
             stamps.push(
-                <span key={i} className="inline-flex m-2 items-center justify-center h-10 w-10 rounded-full bg-gray-200">
+                <span key={i+20} className="inline-flex m-2 items-center justify-center h-10 w-10 rounded-full bg-gray-200">
                     <span className="text-xl font-medium leading-none text-white pb-2"></span>
                 </span>
             )
