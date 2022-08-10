@@ -56,8 +56,8 @@ export default function Main() {
         <>
           <div className="px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
-              <div className="flex">
-                <div className="-ml-2 mr-2 flex items-center md:hidden">
+              <div className="flex items-center">
+                <div className="-ml-2 mr-2 flex items-center hidden"> {/* keep hidden to hide sandwich menu*/}
                   {/* Mobile menu button */}
                   <Disclosure.Button className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                     <span className="sr-only">Open main menu</span>
@@ -70,17 +70,18 @@ export default function Main() {
                 </div>
                 <div className="flex-shrink-0 flex items-center">
                   <img
-                    className="block lg:hidden h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-mark-indigo-500.svg"
-                    alt="Workflow"
+                    className="block lg:hidden h-8 w-auto mr-2"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreesvg.org%2Fimg%2F1536692904.png&f=1&nofb=1"
+                    alt="dispensary"
                   />
                   <img
-                    className="hidden lg:block h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/workflow-logo-indigo-500-mark-white-text.svg"
-                    alt="Workflow"
+                    className="hidden lg:block h-8 w-auto mr-2"
+                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreesvg.org%2Fimg%2F1536692904.png&f=1&nofb=1"
+                    alt="dispensary"
                   />
+                  <h1 className='text-white text-2xl hidden md:block'>Dispensary</h1>
                 </div>
-                <div className="hidden md:ml-6 md:flex md:items-center md:space-x-4">
+                <div className="md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (
                     <Link 
                       to={item.href} 
@@ -98,13 +99,13 @@ export default function Main() {
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="hidden md:ml-4 md:flex-shrink-0 md:flex md:items-center">
-                  <button
+                <div className=" md:ml-4 md:flex-shrink-0 md:flex md:items-center">
+                  {/* <button
                     type="button"
                     className="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                   >
                     <span className="sr-only">View notifications</span>
-                  </button>
+                  </button> */}
 
                   {/* Profile dropdown */}
                   {loggedIn ? 
@@ -160,7 +161,7 @@ export default function Main() {
             </div>
           </div>
 
-          <Disclosure.Panel className="md:hidden">
+          {/* <Disclosure.Panel className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navigation.map((item) => (
                 <Disclosure.Button
@@ -219,7 +220,7 @@ export default function Main() {
                 </Disclosure.Button>
             </div>      
             }
-          </Disclosure.Panel>
+          </Disclosure.Panel> */}
         </>
       )}
     </Disclosure>
