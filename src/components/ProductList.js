@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 const strains = [
     {
         name: 'Pineapple Express',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 35,
         dub: 20,
         dime: 10,
@@ -11,6 +14,9 @@ const strains = [
     },
     {
         name: 'Blue Dream',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 25,
         dub: 0,
         dime: 0,
@@ -20,6 +26,9 @@ const strains = [
     },
     {
         name: 'Girl Scout Cookies',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 40,
         dub: 25,
         dime: 15,
@@ -29,6 +38,9 @@ const strains = [
     },
     {
         name: 'Pineapple Express',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 35,
         dub: 20,
         dime: 10,
@@ -38,6 +50,9 @@ const strains = [
     },
     {
         name: 'Blue Dream',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 25,
         dub: 0,
         dime: 0,
@@ -47,6 +62,9 @@ const strains = [
     },
     {
         name: 'Girl Scout Cookies',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 40,
         dub: 25,
         dime: 15,
@@ -56,6 +74,9 @@ const strains = [
     },
     {
         name: 'Pineapple Express',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 35,
         dub: 20,
         dime: 10,
@@ -65,6 +86,9 @@ const strains = [
     },
     {
         name: 'Blue Dream',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 25,
         dub: 0,
         dime: 0,
@@ -74,6 +98,9 @@ const strains = [
     },
     {
         name: 'Girl Scout Cookies',
+        ounce: 260,
+        half: 130,
+        quarter: 65,
         eighth: 40,
         dub: 25,
         dime: 15,
@@ -89,28 +116,41 @@ const strains = [
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
-            <h1 className="text-xl font-semibold text-gray-900">Strains</h1>
+            {/* <h1 className="text-xl font-semibold text-gray-900">Strains</h1> */}
           </div>
           <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <Link to="/new/strain">
-              <button
-                type="button"
-                className="mt-2 inline-flex items-center justify-center rounded-md border border-transparent bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto"
-              >
-                  Add strain
-              </button>
+              { localStorage.getItem('store') === 'true' ?
+                <button
+                  type="button"
+                  className="mt-2 inline-flex items-center justify-center rounded-md border border-transparent bg-emerald-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 sm:w-auto"
+                >
+                    Add strain
+                </button>
+              : 
+                null 
+              }
             </Link>
           </div>
         </div>
-        <div className="mt-8 flex flex-col">
+        <div className="md:mt-8 flex flex-col">
           <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+            <div className="inline-block min-w-full md:py-2 align-middle md:px-6 lg:px-8">
               <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table className="min-w-full divide-y divide-gray-300">
                   <thead className="bg-gray-50">
                     <tr>
                       <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">
                         Name
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Ounce
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Half
+                      </th>
+                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                        Quarter
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Eighth
@@ -139,6 +179,33 @@ const strains = [
                               <div className="text-gray-500">{strain.subSpecies}</div>
                             </div>
                           </div>
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        { strain.ounce > 0 ?
+                            <div className="text-gray-900">{strain.ounce}</div>
+                            :
+                            <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                            N/A
+                            </span>
+                        }
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        { strain.half > 0 ?
+                            <div className="text-gray-900">{strain.half}</div>
+                            :
+                            <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                            N/A
+                            </span>
+                        }
+                        </td>
+                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        { strain.quarter > 0 ?
+                            <div className="text-gray-900">{strain.quarter}</div>
+                            :
+                            <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                            N/A
+                            </span>
+                        }
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                         { strain.eighth > 0 ?

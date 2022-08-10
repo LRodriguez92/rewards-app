@@ -34,6 +34,7 @@ export default function Main() {
     localStorage.removeItem('jwt')
     localStorage.removeItem('username')
     localStorage.removeItem('email')
+    localStorage.removeItem('store')
     dispatch(logOut())
     navigate('/')
   }

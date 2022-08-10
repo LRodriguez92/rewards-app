@@ -30,10 +30,15 @@ const LoginRedirect = (props) => {
         localStorage.setItem('jwt', res.data.jwt);
         localStorage.setItem('username', res.data.user.username);
         localStorage.setItem('email', res.data.user.email);
+
+        if(res.data.user.store) {
+          localStorage.setItem('store', res.data.user.store);
+        }
+
         dispatch(logIn())
         navigate('/rewards')
-        // setText('You have been successfully logged in. You will be redirected in a few seconds...');
-        // setTimeout(() => navigate('/'), 3000); // Redirect to homepage after 3 sec
+        setText('You have been successfully logged in. You will be redirected in a few seconds...');
+        setTimeout(() => navigate('/'), 3000); // Redirect to homepage after 3 sec
       })
       .catch(err => {
         console.log(err);

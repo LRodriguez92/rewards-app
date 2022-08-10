@@ -4,6 +4,7 @@ export const loggedInSlice = createSlice({
     name: 'loggedIn',
     initialState: {
         value: false,
+        store: null
     },
     reducers: {
         logIn: (state) => {
@@ -11,6 +12,12 @@ export const loggedInSlice = createSlice({
         },
         logOut: (state) => {
             state.value = false
+        },
+        isStore: (state) => {
+            state.store = true
+        },
+        isCustomer: (state) => {
+            state.store = false
         }
     }
 })

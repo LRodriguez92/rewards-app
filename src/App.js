@@ -25,7 +25,9 @@ function App() {
 
   return (
     <>
-    <Nav />
+    <div className=''>
+      <Nav />
+    </div>
     <Routes>
       <Route path="/" element={<ProductList />} />
       <Route path="/login" element={<UserForm loginForm={true}/>} />

@@ -13,6 +13,10 @@ export const login = ({email, password}) => {
     localStorage.setItem('jwt', response.data.jwt);
     localStorage.setItem('username', response.data.user.username);
     localStorage.setItem('email', response.data.user.email);
+
+    if(response.data.user.store) {
+      localStorage.setItem('store', response.data.user.store);
+    }
   })
   .catch((error) => {
     console.log('An error occurred:', error.response);

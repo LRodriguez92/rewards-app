@@ -200,7 +200,7 @@ export default function UserForm({ loginForm }) {
 
                 <div className="flex items-center justify-between">
                 <div className="flex items-center">
-                    <input
+                    {/* <input
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
@@ -208,7 +208,7 @@ export default function UserForm({ loginForm }) {
                     />
                     <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                     Remember me
-                    </label>
+                    </label> */}
                 </div>
                 {loginForm ? 
                     <div className="text-sm">
