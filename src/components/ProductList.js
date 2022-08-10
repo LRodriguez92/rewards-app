@@ -118,7 +118,7 @@ const strains = [
           <div className="sm:flex-auto">
             {/* <h1 className="text-xl font-semibold text-gray-900">Strains</h1> */}
           </div>
-          <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
+          {/* <div className="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
             <Link to="/new/strain">
               { localStorage.getItem('store') === 'true' ?
                 <button
@@ -131,7 +131,7 @@ const strains = [
                 null 
               }
             </Link>
-          </div>
+          </div> */}
         </div>
         <div className="md:mt-8 flex flex-col">
           <div className="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
