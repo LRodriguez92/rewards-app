@@ -1,10 +1,10 @@
-import { Fragment } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { logOut } from '../redux/reducers/loggedInSlice'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 const user = {
   name: localStorage.getItem('username'),
@@ -12,10 +12,7 @@ const user = {
   imageUrl:
     'https://images.unsplash.com/photo-1536964310528-e47dd655ecf3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1843&q=80',
 }
-const navigation = [
-  { name: 'Strains', href: '/', current: true },
-  { name: 'Rewards Card', href: '/rewards', current: false },
-]
+
 const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
@@ -26,9 +23,15 @@ function classNames(...classes) {
 
 export default function Main() {
 
+  const [navigation, setNavigation] = useState([
+    { name: 'Strains', href: '/', current: true },
+    { name: 'Rewards Card', href: '/rewards', current: false },
+  ])
+
   const loggedIn = useSelector((state) => state.loggedIn.value)
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const location = useLocation();
 
   const logOutUser = () => {
     localStorage.removeItem('jwt')
@@ -39,16 +42,19 @@ export default function Main() {
     navigate('/')
   }
 
-  // useEffect(() => {
-  //   if (localStorage.getItem('jwt')) {
-  //     dispatch(logIn())
-  //   }
-  // }, [dispatch])
-
-  // const [navigation, setNavigation] = useState([
-  //   { name: 'Strains', href: '/', current: true },
-  //   { name: 'Rewards Card', href: '/rewards', current: false },
-  // ])
+  useEffect(() => {
+    if (location.pathname === '/') {
+      setNavigation([
+        { name: 'Strains', href: '/', current: true },
+        { name: 'Rewards Card', href: '/rewards', current: false },
+      ])
+    } else {
+      setNavigation([
+        { name: 'Strains', href: '/', current: false },
+        { name: 'Rewards Card', href: '/rewards', current: true },
+      ])
+    }
+  }, [location.pathname])
 
   return (
     <Disclosure as="nav" className="bg-gray-800">
@@ -69,17 +75,23 @@ export default function Main() {
                   </Disclosure.Button>
                 </div>
                 <div className="flex-shrink-0 flex items-center">
-                  <img
-                    className="block lg:hidden h-8 w-auto mr-2"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreesvg.org%2Fimg%2F1536692904.png&f=1&nofb=1"
-                    alt="dispensary"
-                  />
-                  <img
-                    className="hidden lg:block h-8 w-auto mr-2"
-                    src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreesvg.org%2Fimg%2F1536692904.png&f=1&nofb=1"
-                    alt="dispensary"
-                  />
-                  <h1 className='text-white text-2xl hidden md:block'>Dispensary</h1>
+                  <Link to="/">
+                    <img
+                      className="block lg:hidden h-8 w-auto mr-2"
+                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreesvg.org%2Fimg%2F1536692904.png&f=1&nofb=1"
+                      alt="dispensary"
+                    />
+                  </Link>
+                  <Link to="/">
+                    <img
+                      className="hidden lg:block h-8 w-auto mr-2"
+                      src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ffreesvg.org%2Fimg%2F1536692904.png&f=1&nofb=1"
+                      alt="dispensary"
+                    />
+                  </Link>
+                  <Link to="/">
+                    <h1 className='text-white text-2xl hidden md:block'>Dispensary</h1>
+                  </Link>
                 </div>
                 <div className="md:ml-6 md:flex md:items-center md:space-x-4">
                   {navigation.map((item) => (

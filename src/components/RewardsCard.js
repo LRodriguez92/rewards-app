@@ -17,7 +17,6 @@ export default function RewardsCard() {
     let stamps = []
 
     useEffect(() => {
-        console.log({loggedIn});
         if (!loggedIn.value) {
             navigate('/login')
         } else {

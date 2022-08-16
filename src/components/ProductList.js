@@ -1,119 +1,22 @@
-import { Link } from 'react-router-dom'
-const strains = [
-    {
-        name: 'Pineapple Express',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 35,
-        dub: 20,
-        dime: 10,
-        subSpecies: 'Sativa',
-        image:
-        'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Blue Dream',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 25,
-        dub: 0,
-        dime: 0,
-        subSpecies: 'Indica',
-        image:
-          'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Girl Scout Cookies',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 40,
-        dub: 25,
-        dime: 15,
-        subSpecies: 'Hybrid',
-        image:
-          'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Pineapple Express',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 35,
-        dub: 20,
-        dime: 10,
-        subSpecies: 'Sativa',
-        image:
-        'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Blue Dream',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 25,
-        dub: 0,
-        dime: 0,
-        subSpecies: 'Indica',
-        image:
-          'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Girl Scout Cookies',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 40,
-        dub: 25,
-        dime: 15,
-        subSpecies: 'Hybrid',
-        image:
-          'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Pineapple Express',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 35,
-        dub: 20,
-        dime: 10,
-        subSpecies: 'Sativa',
-        image:
-        'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Blue Dream',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 25,
-        dub: 0,
-        dime: 0,
-        subSpecies: 'Indica',
-        image:
-          'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-    {
-        name: 'Girl Scout Cookies',
-        ounce: 260,
-        half: 130,
-        quarter: 65,
-        eighth: 40,
-        dub: 25,
-        dime: 15,
-        subSpecies: 'Hybrid',
-        image:
-          'https://images.unsplash.com/photo-1605570381318-09756c35fd4e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-    },
-  ]
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-  
-  export default function ProductList() {
+export default function ProductList() {
+
+    const [strains, setStrains] = useState([]);
+
+    useEffect(() => {
+        axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/strains`)
+        .then(res => {
+          setStrains(res.data.data);
+        }).catch(err => {
+            console.log(err);
+        }
+        );
+    }, [])
+
     return (
-      <div className="px-4 sm:px-6 lg:px-8">
+      <div className="mt-2 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             {/* <h1 className="text-xl font-semibold text-gray-900">Strains</h1> */}
@@ -146,16 +49,16 @@ const strains = [
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Ounce
                       </th>
-                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      <th scope="col" className="px-5 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Half
                       </th>
-                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      <th scope="col" className="pl-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Quarter
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Eighth
                       </th>
-                      <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+                      {/* <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
                         Dub
                       </th>
                       <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
@@ -163,26 +66,26 @@ const strains = [
                       </th>
                       <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-6">
                         <span className="sr-only">Edit</span>
-                      </th>
+                      </th> */}
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-200 bg-white">
                     {strains.map((strain, index) => (
                       <tr key={index}>
-                        <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
+                        <td className="overflow-x-auto whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
                           <div className="flex items-center">
                             <div className="h-10 w-10 flex-shrink-0">
-                              <img className="h-10 w-10 rounded-full" src={strain.image} alt="" />
+                              <img className="h-10 w-10 rounded-full" src={strain.attributes.image} alt="" />
                             </div>
                             <div className="ml-4">
-                              <div className="font-medium text-gray-900">{strain.name}</div>
-                              <div className="text-gray-500">{strain.subSpecies}</div>
+                              <div className="font-medium text-gray-900">{strain.attributes.name}</div>
+                              <div className="text-gray-500">{strain.attributes.subSpecies}</div>
                             </div>
                           </div>
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        { strain.ounce > 0 ?
-                            <div className="text-gray-900">{strain.ounce}</div>
+                        { strain.attributes.ounce > 0 ?
+                            <div className="text-gray-900">{strain.attributes.ounce}</div>
                             :
                             <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
                             N/A
@@ -190,8 +93,8 @@ const strains = [
                         }
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        { strain.half > 0 ?
-                            <div className="text-gray-900">{strain.half}</div>
+                        { strain.attributes.half > 0 ?
+                            <div className="text-gray-900">{strain.attributes.half}</div>
                             :
                             <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
                             N/A
@@ -199,8 +102,8 @@ const strains = [
                         }
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        { strain.quarter > 0 ?
-                            <div className="text-gray-900">{strain.quarter}</div>
+                        { strain.attributes.quarter > 0 ?
+                            <div className="text-gray-900">{strain.attributes.quarter}</div>
                             :
                             <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
                             N/A
@@ -208,8 +111,17 @@ const strains = [
                         }
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        { strain.eighth > 0 ?
-                            <div className="text-gray-900">{strain.eighth}</div>
+                        { strain.attributes.eighth > 0 ?
+                            <div className="text-gray-900">{strain.attributes.eighth}</div>
+                            :
+                            <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
+                            N/A
+                            </span>
+                        }
+                        </td>
+                        {/* <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                        { strain.attributes.dub > 0 ?
+                            <div className="text-gray-900">{strain.attributes.dub}</div>
                             :
                             <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
                             N/A
@@ -217,28 +129,14 @@ const strains = [
                         }
                         </td>
                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        { strain.dub > 0 ?
-                            <div className="text-gray-900">{strain.dub}</div>
+                        { strain.attributes.dime > 0 ?
+                            <div className="text-gray-900">{strain.attributes.dime}</div>
                             :
                             <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
                             N/A
                             </span>
                         }
-                        </td>
-                        <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                        { strain.dime > 0 ?
-                            <div className="text-gray-900">{strain.dime}</div>
-                            :
-                            <span className="inline-flex rounded-full bg-red-100 px-2 text-xs font-semibold leading-5 text-red-800">
-                            N/A
-                            </span>
-                        }
-                        </td>
-                        <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <a href="/" className="text-indigo-600 hover:text-indigo-900">
-                            Edit<span className="sr-only">, {strain.name}</span>
-                          </a>
-                        </td>
+                        </td> */}
                       </tr>
                     ))}
                   </tbody>
